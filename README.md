@@ -9,6 +9,7 @@ Mobile-first wedding photo upload app built with Next.js, Vercel, and Supabase S
 - Compresses images in the browser before sending
 - Uploads each image to Supabase Storage through a server-side route
 - Optionally stores guest names in a `photos` table when configured
+- Includes a password-protected bride-and-groom gallery at `/brudepar`
 
 ## Stack
 
@@ -26,6 +27,7 @@ SUPABASE_URL=
 SUPABASE_SERVICE_ROLE_KEY=
 SUPABASE_BUCKET=wedding-photos
 WEDDING_DATE=2026-06-01
+GALLERY_PASSWORD=Kokomand123
 ```
 
 Only `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` are required for uploads. Add `SUPABASE_PHOTOS_TABLE=photos` only after creating the optional metadata table.

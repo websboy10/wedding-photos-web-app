@@ -1,12 +1,11 @@
 .pageShell {
   min-height: 100vh;
-  display: grid;
-  place-items: center;
   padding: 24px;
 }
 
 .card {
-  width: min(100%, 440px);
+  width: min(100%, 460px);
+  margin: 0 auto;
   padding: 28px;
   border: 1px solid var(--card-border);
   border-radius: 28px;
@@ -16,38 +15,16 @@
   backdrop-filter: blur(10px);
 }
 
+.galleryCard {
+  width: min(100%, 1320px);
+}
+
 .topBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   margin-bottom: 20px;
-}
-
-.topSpacer {
-  width: 1px;
-}
-
-.topButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 46px;
-  padding: 10px 16px;
-  border-radius: 16px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-size: 0.92rem;
-  font-weight: 800;
-  transition:
-    transform 0.18s ease,
-    background 0.18s ease,
-    color 0.18s ease;
-}
-
-.topButton:hover {
-  transform: translateY(-1px);
-  background: rgba(155, 91, 70, 0.18);
 }
 
 .copyBlock {
@@ -76,16 +53,19 @@
   line-height: 1.6;
 }
 
+.loginForm {
+  display: grid;
+  gap: 14px;
+}
+
 .inputLabel {
   display: inline-block;
-  margin-bottom: 10px;
   font-size: 0.92rem;
   font-weight: 700;
 }
 
-.nameInput {
+.passwordInput {
   width: 100%;
-  margin-bottom: 18px;
   padding: 14px 16px;
   border: 1px solid rgba(106, 80, 56, 0.18);
   border-radius: 16px;
@@ -98,31 +78,25 @@
     background 0.2s ease;
 }
 
-.nameInput:focus {
+.passwordInput:focus {
   border-color: rgba(155, 91, 70, 0.55);
   box-shadow: 0 0 0 4px rgba(155, 91, 70, 0.12);
   background: rgba(255, 255, 255, 0.95);
 }
 
-.buttonGroup {
-  display: grid;
-  gap: 12px;
-}
-
 .primaryButton,
-.secondaryButton {
-  min-height: 58px;
-  padding: 16px 18px;
-  border-radius: 18px;
+.ghostButton {
+  min-height: 50px;
+  padding: 12px 18px;
+  border-radius: 16px;
   border: 0;
-  font-size: 1rem;
+  font-size: 0.96rem;
   font-weight: 800;
   transition:
     transform 0.18s ease,
     box-shadow 0.18s ease,
     background 0.18s ease,
-    color 0.18s ease,
-    opacity 0.18s ease;
+    color 0.18s ease;
 }
 
 .primaryButton {
@@ -131,32 +105,17 @@
   box-shadow: 0 18px 30px rgba(155, 91, 70, 0.24);
 }
 
-.secondaryButton {
+.ghostButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: var(--accent-soft);
   color: var(--accent);
 }
 
-.primaryButton:hover:not(:disabled),
-.secondaryButton:hover:not(:disabled) {
+.primaryButton:hover,
+.ghostButton:hover {
   transform: translateY(-1px);
-}
-
-.primaryButton:hover:not(:disabled) {
-  background: linear-gradient(135deg, var(--accent-hover) 0%, #9b5b46 100%);
-}
-
-.secondaryButton:hover:not(:disabled) {
-  background: rgba(155, 91, 70, 0.18);
-}
-
-.primaryButton:disabled,
-.secondaryButton:disabled {
-  opacity: 0.68;
-  cursor: wait;
-}
-
-.hiddenInput {
-  display: none;
 }
 
 .statusBanner {
@@ -174,26 +133,39 @@
   border: 1px solid rgba(106, 80, 56, 0.14);
 }
 
-.compressing,
-.uploading {
-  border: 1px solid rgba(155, 91, 70, 0.22);
-  background: rgba(155, 91, 70, 0.08);
-  color: var(--accent);
-}
-
-.success {
-  border: 1px solid rgba(47, 125, 84, 0.2);
-  background: rgba(47, 125, 84, 0.1);
-  color: var(--success);
-}
-
 .error {
   border: 1px solid rgba(163, 62, 53, 0.18);
   background: rgba(163, 62, 53, 0.1);
   color: var(--error);
 }
 
-@media (max-width: 480px) {
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.photoTile {
+  overflow: hidden;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 12px 24px rgba(77, 49, 31, 0.1);
+}
+
+.photoImage {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+@media (min-width: 1024px) {
+  .galleryGrid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
   .pageShell {
     padding: 16px;
   }

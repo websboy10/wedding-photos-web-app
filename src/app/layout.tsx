@@ -14,8 +14,8 @@ const bodyFont = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Wedding Photos",
-  description: "Upload photos directly to our wedding album.",
+  title: "Bryllupsbilleder",
+  description: "Upload billeder direkte til vores bryllupsalbum.",
 };
 
 export default function RootLayout({

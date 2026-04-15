@@ -1,6 +1,7 @@
 "use client";
 
 import imageCompression from "browser-image-compression";
+import Link from "next/link";
 import { type ChangeEvent, useRef, useState } from "react";
 import styles from "./photo-uploader.module.css";
 
@@ -15,7 +16,7 @@ const compressionOptions = {
 };
 
 function toJpegFileName(name: string) {
-  const basename = name.replace(/\.[^.]+$/, "").trim() || "wedding-photo";
+  const basename = name.replace(/\.[^.]+$/, "").trim() || "bryllupsbillede";
   return `${basename}.jpg`;
 }
 
@@ -77,17 +78,23 @@ export function PhotoUploader() {
   return (
     <main className={styles.pageShell}>
       <section className={styles.card}>
+        <div className={styles.topBar}>
+          <span className={styles.topSpacer} />
+          <Link className={styles.topButton} href="/brudepar">
+            Brudepar
+          </Link>
+        </div>
+
         <div className={styles.copyBlock}>
-          <p className={styles.eyebrow}>Wedding memories</p>
-          <h1 className={styles.title}>Upload photos to our wedding ❤️</h1>
+          <p className={styles.eyebrow}>Bryllupsminder</p>
+          <h1 className={styles.title}>Upload billeder til vores bryllup ❤️</h1>
           <p className={styles.description}>
-            Snap a moment or share one from your gallery. Each image is
-            compressed before upload so it sends quickly on mobile.
+            Tag et billede lige nu eller vælg et fra dit galleri.
           </p>
         </div>
 
         <label className={styles.inputLabel} htmlFor="guestName">
-          Your name or table
+          Dit navn
         </label>
         <input
           id="guestName"
@@ -95,7 +102,7 @@ export function PhotoUploader() {
           disabled={isBusy}
           maxLength={80}
           onChange={(event) => setGuestName(event.target.value)}
-          placeholder="Optional"
+          placeholder="Valgfrit"
           type="text"
           value={guestName}
         />
@@ -107,7 +114,7 @@ export function PhotoUploader() {
             onClick={() => cameraInputRef.current?.click()}
             type="button"
           >
-            Take photo
+            Tag billede
           </button>
           <button
             className={styles.secondaryButton}
@@ -115,7 +122,7 @@ export function PhotoUploader() {
             onClick={() => galleryInputRef.current?.click()}
             type="button"
           >
-            Upload photo
+            Upload billede
           </button>
         </div>
 
@@ -124,7 +131,7 @@ export function PhotoUploader() {
           capture="environment"
           className={styles.hiddenInput}
           disabled={isBusy}
-          onChange={(event) => handleFileSelection(event, "camera")}
+          onChange={(event) => handleFileSelection(event, "kamera")}
           ref={cameraInputRef}
           type="file"
         />
@@ -132,7 +139,7 @@ export function PhotoUploader() {
           accept="image/*"
           className={styles.hiddenInput}
           disabled={isBusy}
-          onChange={(event) => handleFileSelection(event, "gallery")}
+          onChange={(event) => handleFileSelection(event, "galleri")}
           ref={galleryInputRef}
           type="file"
         />
@@ -141,18 +148,13 @@ export function PhotoUploader() {
           aria-live="polite"
           className={`${styles.statusBanner} ${styles[status]}`}
         >
-          {status === "idle" && "One photo at a time. Works best on your phone."}
-          {status === "compressing" && "Preparing your photo…"}
+          {status === "idle" && "Et billede ad gangen."}
+          {status === "compressing" && "Klargør dit billede…"}
           {status === "uploading" &&
-            `Uploading${activeLabel ? ` from ${activeLabel}` : ""}…`}
-          {status === "success" && "Thank you ❤️"}
-          {status === "error" && "Something went wrong, try again"}
+            `Uploader${activeLabel ? ` fra ${activeLabel}` : ""}…`}
+          {status === "success" && "Tak ❤️"}
+          {status === "error" && "Noget gik galt. Prøv igen."}
         </div>
-
-        <p className={styles.footnote}>
-          Photos are resized to 1280px and optimized to roughly 1 to 2 MB for
-          faster uploads.
-        </p>
       </section>
     </main>
   );

@@ -29,21 +29,21 @@ export async function POST(request: Request) {
 
     if (!(photo instanceof File)) {
       return NextResponse.json(
-        { error: "Please choose a photo first." },
+        { error: "Vælg et billede først." },
         { status: 400 },
       );
     }
 
     if (!photo.type.startsWith("image/")) {
       return NextResponse.json(
-        { error: "Only image uploads are supported." },
+        { error: "Kun billeder kan uploades." },
         { status: 400 },
       );
     }
 
     if (photo.size > MAX_UPLOAD_BYTES) {
       return NextResponse.json(
-        { error: "Photo is too large. Please try a smaller image." },
+        { error: "Billedet er for stort. Prøv et mindre billede." },
         { status: 400 },
       );
     }
@@ -84,7 +84,7 @@ export async function POST(request: Request) {
     console.error("Upload failed:", error);
 
     return NextResponse.json(
-      { error: "Something went wrong, try again." },
+      { error: "Noget gik galt. Prøv igen." },
       { status: 500 },
     );
   }
