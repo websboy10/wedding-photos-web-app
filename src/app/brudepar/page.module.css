@@ -146,6 +146,7 @@
 }
 
 .photoTile {
+  display: block;
   overflow: hidden;
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.7);
@@ -155,8 +156,7 @@
 .photoImage {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+  height: auto;
 }
 
 @media (min-width: 1024px) {
