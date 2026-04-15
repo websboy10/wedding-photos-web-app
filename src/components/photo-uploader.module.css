@@ -1,0 +1,178 @@
+.pageShell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.card {
+  width: min(100%, 440px);
+  padding: 28px;
+  border: 1px solid var(--card-border);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, var(--paper-strong) 100%);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.copyBlock {
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin-bottom: 12px;
+  font-family: var(--font-heading), serif;
+  font-size: clamp(2.3rem, 8vw, 3.3rem);
+  line-height: 0.95;
+}
+
+.description {
+  color: var(--muted);
+  font-size: 0.99rem;
+  line-height: 1.6;
+}
+
+.inputLabel {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.nameInput {
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  border: 1px solid rgba(106, 80, 56, 0.18);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--ink);
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.nameInput:focus {
+  border-color: rgba(155, 91, 70, 0.55);
+  box-shadow: 0 0 0 4px rgba(155, 91, 70, 0.12);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.buttonGroup {
+  display: grid;
+  gap: 12px;
+}
+
+.primaryButton,
+.secondaryButton {
+  min-height: 58px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease,
+    color 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.primaryButton {
+  background: linear-gradient(135deg, var(--accent) 0%, #b76e56 100%);
+  color: #fffaf4;
+  box-shadow: 0 18px 30px rgba(155, 91, 70, 0.24);
+}
+
+.secondaryButton {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.primaryButton:hover:not(:disabled),
+.secondaryButton:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.primaryButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--accent-hover) 0%, #9b5b46 100%);
+}
+
+.secondaryButton:hover:not(:disabled) {
+  background: rgba(155, 91, 70, 0.18);
+}
+
+.primaryButton:disabled,
+.secondaryButton:disabled {
+  opacity: 0.68;
+  cursor: wait;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.statusBanner {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.idle {
+  border: 1px solid rgba(106, 80, 56, 0.14);
+}
+
+.compressing,
+.uploading {
+  border: 1px solid rgba(155, 91, 70, 0.22);
+  background: rgba(155, 91, 70, 0.08);
+  color: var(--accent);
+}
+
+.success {
+  border: 1px solid rgba(47, 125, 84, 0.2);
+  background: rgba(47, 125, 84, 0.1);
+  color: var(--success);
+}
+
+.error {
+  border: 1px solid rgba(163, 62, 53, 0.18);
+  background: rgba(163, 62, 53, 0.1);
+  color: var(--error);
+}
+
+.footnote {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 480px) {
+  .pageShell {
+    padding: 16px;
+  }
+
+  .card {
+    padding: 22px;
+    border-radius: 24px;
+  }
+}

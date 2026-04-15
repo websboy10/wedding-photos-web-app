@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Wedding Photos
 
-## Getting Started
+Mobile-first wedding photo upload app built with Next.js, Vercel, and Supabase Storage.
 
-First, run the development server:
+## What it does
+
+- Opens cleanly from a QR code on mobile
+- Lets guests take a photo or upload from their gallery
+- Compresses images in the browser before sending
+- Uploads each image to Supabase Storage through a server-side route
+- Optionally stores guest names in a `photos` table when configured
+
+## Stack
+
+- Next.js 16 App Router
+- Vercel for hosting
+- Supabase Storage for uploads
+- `browser-image-compression` for client-side image optimization
+
+## Environment variables
+
+Copy `.env.example` to `.env.local` and set:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
+SUPABASE_BUCKET=wedding-photos
+WEDDING_DATE=2026-06-01
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Only `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` are required for uploads. Add `SUPABASE_PHOTOS_TABLE=photos` only after creating the optional metadata table.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Local development
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+## Supabase setup
 
-To learn more about Next.js, take a look at the following resources:
+Create the bucket automatically after your env vars are in place:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+set -a
+source .env.local
+set +a
+npm run setup:supabase
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+If you want to save guest names and file paths, run [supabase/photos.sql](/Users/gaest/Wedding photos/supabase/photos.sql:1) in Supabase and then add `SUPABASE_PHOTOS_TABLE=photos` to your env:
 
-## Deploy on Vercel
+## Deploy to Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Add the same environment variables to your Vercel project.
+2. Deploy with `vercel --prod` or connect the GitHub repo in Vercel.
+3. Generate a QR code that points to the production URL.
